@@ -31,8 +31,8 @@ jobs:
 
       - name: Tag Docker image for GCR
         run: |
-          docker tag josh:1.0.0 gcr-satrack.io/centered-moon-319616/josh:1.0.0 
+          docker tag josh:1.0.0 us-central1-docker.pkg.dev/centered-moon-319616/gcr-satrack/josh:1.0.0 
 
       - name: Push Docker image to GCR
         run: |
-          docker push gcr-satrack.io/centered-moon-319616/josh:1.0.0
+          docker push us-central1-docker.pkg.dev/centered-moon-319616/gcr-satrack/josh:1.0.0
