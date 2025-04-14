@@ -16,7 +16,14 @@ jobs:
       - name: Build Docker image
         run: |
           pwd
-          docker build -t josh:1.0.0 .
+          # docker build -t josh:1.0.0 .
 
+      - name: GCR_CONFIG
+        env: # Or as an environment variable
+          GCR_KEY: ${{ secrets.GCR_KEY }}
+        run: |
+          echo "$GCR_KEY" > ${HOME}/gcr-key.json
+          gcloud auth activate-service-account --key-file=${HOME}/gcr-key.json
+          gcloud config set project TU_ID_DE_PROYECTO
+          gcloud auth configure-docker
 
-          
