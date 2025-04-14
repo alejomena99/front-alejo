@@ -23,7 +23,7 @@ jobs:
           echo "$GCR_KEY" > ${HOME}/gcr-key.json
           gcloud auth activate-service-account --key-file=${HOME}/gcr-key.json
           gcloud config set project centered-moon-319616
-          gcloud auth configure-docker
+          gcloud auth configure-docker us-central1-docker.pkg.dev
 
       - name: Build Docker image
         run: |
