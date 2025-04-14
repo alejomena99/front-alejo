@@ -13,10 +13,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Build Docker image
-        run: |
-          pwd
-          # docker build -t josh:1.0.0 .
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
       - name: GCR_CONFIG
         env: # Or as an environment variable
@@ -27,3 +25,14 @@ jobs:
           gcloud config set project centered-moon-319616
           gcloud auth configure-docker
 
+      - name: Build Docker image
+        run: |
+          docker build -t josh:1.0.0 .
+
+      - name: Tag Docker image for GCR
+        run: |
+          docker tag josh:1.0.0 gcr.io/centered-moon-319616/josh:1.0.0
+
+      - name: Push Docker image to GCR
+        run: |
+          docker push gcr.io/centered-moon-319616/josh:1.0.0
