@@ -6,6 +6,18 @@ on:
       - main
       - test2
 
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Environment destino
+        required: true
+        type: choice
+        default: dev
+        options:
+          - dev
+          - qa
+          - pdn
+          
 jobs:
   build:
     runs-on: ubuntu-latest
