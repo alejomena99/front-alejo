@@ -33,6 +33,12 @@ jobs:
         run: |
           docker tag josh:1.0.0 us-central1-docker.pkg.dev/centered-moon-319616/gcr-satrack/josh:1.0.0 
 
-      - name: Push Docker image to GCR
+      - name: Validar environment
         run: |
-          docker push us-central1-docker.pkg.dev/centered-moon-319616/gcr-satrack/josh:1.0.0
+          if [ ${{ vars.ENVIROMMENT }} = "PDN" ]; then
+            echo "Environment es PDN ✅"
+            exit 0
+          else
+            echo "Environment NO es PDN ❌"
+            exit 1
+          fi
